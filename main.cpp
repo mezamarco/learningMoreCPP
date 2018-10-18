@@ -5,6 +5,9 @@
 //In this cpp file, we will learn more about unique pointers and shared pointers
 
 
+template<typename T>
+void print(T val);
+
 class Node {
 public:
 	int data;
@@ -96,5 +99,24 @@ int main() {
 
 	//For a weak point, You can combine a shared pointer, but the reference count will increase.
 
+
+
+
+
+
+
+
+
+
+	//We are now going to work with Templates.
+	//We are telling the compiler to write code for us.
+	print<int>(3);
+	print<std::string>("Hola");
+	print<double>(33.4);
+
 }
 
+template<typename T>
+void print(T val){
+	std::cout << val << "\n";
+}
