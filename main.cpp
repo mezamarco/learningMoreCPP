@@ -1,12 +1,21 @@
-
 #include <iostream>
 #include <memory>
 
-//In this cpp file, we will learn more about unique pointers and shared pointers
-
-
 template<typename T>
 void print(T val);
+
+
+//We need a function that will clear our 2D array
+void populateMatrix(int** arr){
+	int m = 0;
+	for(int i = 0; i < 10; i++){
+		for(int j = 0 ; j < 5;  j++){
+			arr[i][j] = m;
+			++m;
+		}
+	}
+} 
+
 
 class Node {
 public:
@@ -99,21 +108,35 @@ int main() {
 
 	//For a weak point, You can combine a shared pointer, but the reference count will increase.
 
-
-
-
-
-
-
-
-
-
-	//We are now going to work with Templates.
+	//We are now going to work with Templates specifically for a function.
 	//We are telling the compiler to write code for us.
 	print<int>(3);
 	print<std::string>("Hola");
 	print<double>(33.4);
 
+
+	//How do we deal with a 2D Matrix that is placed in the heap
+	int** arr = new int*[10];
+	for(int i = 0; i< 10; i++){
+		arr[i] = new int[5];
+	}
+	//I defined a function that will populate our 2D matrix
+	populateMatrix(arr);
+
+	//Print the 2D array
+	for(int i = 0; i< 10; i++){
+		std::cout << "\n";	
+		for(int j = 0 ; j < 5 ; j++)
+			std::cout << arr[i][j] << "\t";
+	}
+	
+	//Delete the 2D matrix that was placed in the heap
+	for(int i =0; i < 10; i++){
+		delete[] arr[i];
+	}
+
+	delete[] arr;
+	//The heap has been cleared, we are done with the 2D Matrix
 }
 
 template<typename T>
